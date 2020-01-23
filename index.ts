@@ -11,7 +11,10 @@ const csvData = data
     return ele.join(",");
   })
   .join("\n");
-
+/**
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent
+ * @param str 
+ */
 function encodeRFC5987ValueChars(str) {
   return (
     encodeURIComponent(str)
@@ -25,6 +28,10 @@ function encodeRFC5987ValueChars(str) {
   );
 }
 
+/**
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent
+ * @param str 
+ */
 function makeDispositionFileNameField(fileName: string) {
   return `filename*=UTF-8''${encodeRFC5987ValueChars(fileName)}`;
 }
