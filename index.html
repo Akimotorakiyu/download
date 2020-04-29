@@ -7,6 +7,29 @@
     <title>Document</title>
   </head>
   <body>
-    <a href="http://127.0.0.1:3000" download="data.csv">下载</a>
+    <a href="http://127.0.0.1:3000">下载</a>
+
+    <script>
+      fetch("http://127.0.0.1:3000")
+        .then(res => {
+          console.log(res);
+
+          return res.blob();
+        })
+        .then(res => {
+          const reader = new FileReader();
+          reader.readAsDataURL(res);
+          reader.onload = e => {
+            console.log(e);
+
+            var a = document.createElement("a");
+            a.download = "data.csv";
+            a.href = e.target.result;
+            document.body.append(a); // 修复firefox中无法触发click
+            a.click();
+            document.body.removeChild(a);
+          };
+        });
+    </script>
   </body>
 </html>

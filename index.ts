@@ -39,6 +39,7 @@ function makeDispositionFileNameField(fileName: string) {
 const server = http.createServer((req, res) => {
   const fileName = makeDispositionFileNameField("CSV表格.csv");
 
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Content-Type", "text/csv; charset=utf-8");
   res.setHeader("Content-Disposition", `attachment; ${fileName}`);
 
